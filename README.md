@@ -54,6 +54,8 @@ Input files are expected in `data/input/`, including:
 
 ## Checked-In Repository Map
 
+This tree shows the current checked-in layout at a glance; keep it aligned with structural changes and refer to `docs/PROJECT_STRUCTURE.md` for the maintained high-level summary.
+
 ```text
 .
 ├── README.md
