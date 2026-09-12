@@ -22,16 +22,22 @@ try:
     VOYAGE_KEY = user_secrets.get_secret("VOYAGE_API_KEY")
 except Exception:
     print("⚠️ Kaggle Secrets not found. Falling back to environment variable.")
-    VOYAGE_KEY = os.environ.get("VOYAGE_API_KEY", "YOUR_API_KEY_HERE")
+    VOYAGE_KEY = os.environ.get("VOYAGE_API_KEY", "")
 
 # ==========================================
 # 1. CONFIGURATION & CACHE DIRECTORIES
 # ==========================================
 class Config:
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+    LOCAL_INPUT_DEFAULT = os.path.join(REPO_ROOT, "data", "input")
+    KAGGLE_INPUT_DEFAULT = "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/"
+
     # Dataset Paths
-    BASE_PATH = os.environ.get(
-        "AGRONOMY_INPUT_PATH",
-        "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/",
+    BASE_PATH = os.environ.get("AGRONOMY_INPUT_PATH") or (
+        LOCAL_INPUT_DEFAULT
+        if os.path.exists(os.path.join(LOCAL_INPUT_DEFAULT, "documents.csv"))
+        else KAGGLE_INPUT_DEFAULT
     )
     OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
 
@@ -84,8 +90,11 @@ class CachedBM25Retriever:
             print(f"📦 Loading cached BM25 index from: {Config.BM25_CACHE_PATH}")
             with open(Config.BM25_CACHE_PATH, "rb") as f:
                 state = pickle.load(f)
+            cached_doc_ids = state.get("doc_ids", [])
+            if cached_doc_ids == doc_ids:
                 self.__dict__.update(state)
-            return
+                return
+            print("♻️ BM25 cache mismatch detected; rebuilding index for current corpus.")
 
         print("⚡ Fitting BM25 index from corpus...")
         self.doc_ids = doc_ids
@@ -142,11 +151,14 @@ class CachedNomicRetriever:
     def fit(self, doc_ids: List[str], docs: List[str], force_recompute: bool = False):
         cache_exists = os.path.exists(Config.EMBEDDINGS_CACHE_PATH) and os.path.exists(Config.DOC_IDS_CACHE_PATH)
         if not force_recompute and cache_exists:
-            print(f"📦 Loading cached embeddings from: {Config.EMBEDDINGS_CACHE_PATH}")
-            self.doc_embeddings = torch.load(Config.EMBEDDINGS_CACHE_PATH, map_location=self.device)
             with open(Config.DOC_IDS_CACHE_PATH, "rb") as f:
-                self.doc_ids = pickle.load(f)
-            return
+                cached_doc_ids = pickle.load(f)
+            if cached_doc_ids == doc_ids:
+                print(f"📦 Loading cached embeddings from: {Config.EMBEDDINGS_CACHE_PATH}")
+                self.doc_embeddings = torch.load(Config.EMBEDDINGS_CACHE_PATH, map_location=self.device)
+                self.doc_ids = cached_doc_ids
+                return
+            print("♻️ Embedding cache mismatch detected; recomputing for current corpus.")
 
         print("⚡ Computing Nomic embeddings for document corpus...")
         prefixed_docs = [f"search_document: {doc}" for doc in docs]
@@ -238,6 +250,9 @@ def compute_ndcg_at_5(predicted_rankings: Dict[str, List[str]], qrels_df: pd.Dat
 # 6. MAIN EXECUTION PIPELINE
 # ==========================================
 def main():
+    if not VOYAGE_KEY:
+        raise ValueError("VOYAGE_API_KEY is required for scripts/external_reranking_api.py")
+
     print(f"--- Initialization ---")
     print(f"Device: {Config.DEVICE} | Voyage API Client Status: Ready")
     

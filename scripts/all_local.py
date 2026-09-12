@@ -18,10 +18,16 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 # 1. CONFIGURATION & CACHE DIRECTORIES
 # ==========================================
 class Config:
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+    LOCAL_INPUT_DEFAULT = os.path.join(REPO_ROOT, "data", "input")
+    KAGGLE_INPUT_DEFAULT = "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/"
+
     # Dataset Paths
-    BASE_PATH = os.environ.get(
-        "AGRONOMY_INPUT_PATH",
-        "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/",
+    BASE_PATH = os.environ.get("AGRONOMY_INPUT_PATH") or (
+        LOCAL_INPUT_DEFAULT
+        if os.path.exists(os.path.join(LOCAL_INPUT_DEFAULT, "documents.csv"))
+        else KAGGLE_INPUT_DEFAULT
     )
     OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
 
