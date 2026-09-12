@@ -1,5 +1,7 @@
 # Project Structure
 
+_Simplified high-level view of the repository layout._
+
 ```
 .
 ├── README.md

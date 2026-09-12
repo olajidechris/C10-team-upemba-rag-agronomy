@@ -20,4 +20,4 @@ This repository has been reorganized for final submission.
 ## Notes
 
 Legacy working artifacts have been archived in `old/` to keep the repository root clean for submission review.
-The extracted submission docs in `docs/` are compiled from the four challenge response materials.
+The extracted challenge-specific docs (`PROBLEM_STATEMENT.md`, `DATA_CARD.md`, `IMPACT_STATEMENT.md`, and `STAKEHOLDER_ENGAGEMENT_PLAN.md`) are compiled from the four challenge response materials.
