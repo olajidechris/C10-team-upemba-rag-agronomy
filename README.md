@@ -84,9 +84,7 @@ When the scripts run locally, they also create `data/output/` for generated arti
 - `docs/DATA_CARD.md` - dataset description and usage context.
 - `docs/IMPACT_STATEMENT.md` - intended benefits, risks, and mitigations.
 - `docs/STAKEHOLDER_ENGAGEMENT_PLAN.md` - stakeholder plan for farmer and extension-worker feedback.
-- `docs/SUBMISSION_FORMAT.md` - required submission schema and supported script tracks.
 - `docs/PROJECT_STRUCTURE.md` - simplified high-level repository layout.
-- `docs/SUBMISSION.md` - submission summary and checklist.
 
 ## Team Upemba Members
 
