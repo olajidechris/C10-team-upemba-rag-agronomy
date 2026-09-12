@@ -1,5 +1,5 @@
 # Problem Statement
 
-Extracted from: `old/Challenge 1 form responses.md`
+Extracted from: `resources/Challenge 1 form responses.md`
 
 To develop a CPU-efficient, semantic document retrieval pipeline that significantly outperforms the sparse TF-IDF baseline score on the nDCG@5 metric, returning the top five most relevant agricultural extension documents for African smallholder farmers' natural language queries. Smallholder farmers require timely advice to safeguard yields, but existing systems rely on lexical keyword matching that fails to bridge the gap between technical agronomic terminology and colloquial field queries. This context blindness leads to misdiagnoses and irrelevant results. Our solution integrates sparse lexical retrieval with dense semantic embeddings to accurately capture intent without requiring GPU compute. Guided by inclusivity and resource-conscious AI, this tool democratizes expert knowledge, ensuring deployability on low-cost hardware in rural extension offices to build agricultural resilience against climate variability, soil degradation, and pest outbreaks.
