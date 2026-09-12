@@ -19,8 +19,11 @@ from sentence_transformers import SentenceTransformer, CrossEncoder
 # ==========================================
 class Config:
     # Dataset Paths
-    BASE_PATH = "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/"
-    OUTPUT_DIR = "/kaggle/working/"
+    BASE_PATH = os.environ.get(
+        "AGRONOMY_INPUT_PATH",
+        "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/",
+    )
+    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
 
     DOCS_PATH = os.path.join(BASE_PATH, "documents.csv")
     TRAIN_QUERIES_PATH = os.path.join(BASE_PATH, "train_queries.csv")
@@ -158,7 +161,7 @@ class CachedNomicRetriever:
         self.doc_ids = []
         self.doc_embeddings = None
 
-    def fit(self, doc_ids: List[str], docs: List[str], batch_size: int = 32, force_recompute: bool = True):
+    def fit(self, doc_ids: List[str], docs: List[str], batch_size: int = 32, force_recompute: bool = False):
         cache_exists = os.path.exists(Config.EMBEDDINGS_CACHE_PATH) and os.path.exists(Config.DOC_IDS_CACHE_PATH)
 
         if not force_recompute and cache_exists:
@@ -364,4 +367,5 @@ def main():
     assert list(submission_df.columns) == ["QueryId", "DocumentId"], "Columns mismatch!"
     print(f"✅ Generated '{Config.SUBMISSION_PATH}' ({len(submission_df)} rows).")
 
-main()
+if __name__ == "__main__":
+    main()

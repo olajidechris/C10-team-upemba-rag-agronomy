@@ -29,8 +29,11 @@ except Exception:
 # ==========================================
 class Config:
     # Dataset Paths
-    BASE_PATH = "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/"
-    OUTPUT_DIR = "/kaggle/working/"
+    BASE_PATH = os.environ.get(
+        "AGRONOMY_INPUT_PATH",
+        "/kaggle/input/competitions/agricultural-extension-rag-smart-retrieval-for-farmers/",
+    )
+    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
 
     DOCS_PATH = os.path.join(BASE_PATH, "documents.csv")
     TRAIN_QUERIES_PATH = os.path.join(BASE_PATH, "train_queries.csv")
