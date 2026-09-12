@@ -127,6 +127,9 @@ class CachedBM25Retriever:
         print(f"💾 BM25 index saved to: {Config.BM25_CACHE_PATH}")
 
     def search(self, query: str, top_k: int = 40) -> List[Tuple[str, float]]:
+        if self.avgdl == 0.0:
+            return [(doc_id, 0.0) for doc_id in self.doc_ids[:top_k]]
+
         tokens = self.tokenize(query)
         scores = np.zeros(self.corpus_size)
 
