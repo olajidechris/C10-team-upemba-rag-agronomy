@@ -5,6 +5,9 @@ _Simplified high-level view of the repository layout._
 ```
 .
 ├── README.md
+├── data/
+│   └── input/
+│       └── [competition input data files]
 ├── docs/
 │   ├── DATA_CARD.md
 │   ├── IMPACT_STATEMENT.md
@@ -12,6 +15,9 @@ _Simplified high-level view of the repository layout._
 │   ├── PROJECT_STRUCTURE.md
 │   ├── STAKEHOLDER_ENGAGEMENT_PLAN.md
 │   └── SUBMISSION.md
+├── scripts/
+│   ├── all_local.py
+│   └── external_reranking_api.py
 └── old/
     └── [archived legacy artifacts]
 ```

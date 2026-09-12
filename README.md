@@ -6,6 +6,8 @@ This repository has been reorganized for final submission.
 
 - `README.md` - project overview and submission navigation.
 - `docs/` - submission documentation.
+- `scripts/` - Python scripts extracted from archived notebooks.
+- `data/input/` - extracted competition input data files.
 - `old/` - archived legacy files from earlier working versions.
 
 ## Submission Documents
