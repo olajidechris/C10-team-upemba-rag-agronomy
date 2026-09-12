@@ -266,6 +266,8 @@ class RAGRetrievalEngine:
 
         # 2. Reciprocal Rank Fusion Pooling
         candidate_ids = self.reciprocal_rank_fusion(bm25_candidates, dense_candidates, k=Config.RRF_K)
+        if not candidate_ids:
+            return []
 
         # 3. Cross-Encoder Re-ranking
         cross_inputs = [[query, self.doc_lookup[doc_id]] for doc_id in candidate_ids]
@@ -344,6 +346,8 @@ def main():
     doc_ids = [clean_id(did) for did in docs_df["document_id"]]
     doc_texts = docs_df["full_text"].tolist()
     doc_lookup = dict(zip(doc_ids, doc_texts))
+    if len(doc_ids) < Config.FINAL_TOP_K:
+        raise ValueError(f"Expected at least {Config.FINAL_TOP_K} documents, found {len(doc_ids)}")
     print(f"Total documents: {len(docs_df)}")
 
     print("\n--- 2. Initializing Retrievers (with Cache Check) ---")

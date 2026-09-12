@@ -215,6 +215,8 @@ class RAGRetrievalEngine:
 
         # 2. Reciprocal Rank Fusion Pooling (Top 50)
         candidate_ids = self.reciprocal_rank_fusion(bm25_candidates, dense_candidates, k=Config.RRF_K)
+        if not candidate_ids:
+            return []
 
         # 3. Compile Candidate Texts for Voyage
         cross_docs = [self.doc_lookup[doc_id] for doc_id in candidate_ids]
@@ -225,7 +227,7 @@ class RAGRetrievalEngine:
                 query=query,
                 documents=cross_docs,
                 model=Config.VOYAGE_MODEL_NAME,
-                top_k=Config.FINAL_TOP_K,
+                top_k=min(Config.FINAL_TOP_K, len(candidate_ids)),
                 truncation=True
             )
             
@@ -286,6 +288,8 @@ def main():
     doc_ids = [clean_id(did) for did in docs_df["document_id"]]
     doc_texts = docs_df["full_text"].tolist()
     doc_lookup = dict(zip(doc_ids, doc_texts))
+    if len(doc_ids) < Config.FINAL_TOP_K:
+        raise ValueError(f"Expected at least {Config.FINAL_TOP_K} documents, found {len(doc_ids)}")
     print(f"Total documents loaded: {len(docs_df)}")
 
     print("\n--- 2. Initializing Local Candidate Retrievers ---")
