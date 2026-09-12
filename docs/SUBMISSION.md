@@ -7,12 +7,14 @@ Agricultural Extension RAG solution by Team Upemba (Cohort 10).
 - Reorganized repository structure for easier review.
 - Archived historical/working artifacts under `old/`.
 - Added clear navigation and documentation.
+- Extracted and included challenge submission documents in `docs/`.
 
 ## Checklist
 - [x] Root cleaned and structured for review.
 - [x] Legacy files moved to `old/`.
 - [x] Submission README added.
 - [x] Supporting documentation added.
+- [x] Problem statement and challenge submission documents extracted into `docs/`.
 
 ## Archive
 All prior working files are preserved in `old/` and can be referenced if needed.

@@ -4,7 +4,11 @@
 .
 ├── README.md
 ├── docs/
+│   ├── DATA_CARD.md
+│   ├── IMPACT_STATEMENT.md
+│   ├── PROBLEM_STATEMENT.md
 │   ├── PROJECT_STRUCTURE.md
+│   ├── STAKEHOLDER_ENGAGEMENT_PLAN.md
 │   └── SUBMISSION.md
 └── old/
     ├── Challenge 1 form responses.md
