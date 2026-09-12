@@ -35,7 +35,7 @@
     },
     {
       "path": "train_queries.csv",
-      "description": "Training queries with their relevant docs (308 data rows).",
+      "description": "Training queries with their relevant docs.",
       "schema": {
         "fields": [
           { "name": "query_id", "type": "integer", "description": "Unique query id (train ids start at 1)." },

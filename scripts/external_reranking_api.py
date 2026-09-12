@@ -152,7 +152,12 @@ class CachedNomicRetriever:
     def __init__(self, model_name: str, device: str = "cpu"):
         self.device = device
         print(f"📥 Loading dense model weights ({model_name})...")
-        self.model = SentenceTransformer(model_name, device=device, cache_folder=Config.MODEL_CACHE_DIR)
+        self.model = SentenceTransformer(
+            model_name,
+            device=device,
+            trust_remote_code=True,
+            cache_folder=Config.MODEL_CACHE_DIR,
+        )
         self.doc_ids = []; self.doc_embeddings = None
 
     def fit(self, doc_ids: List[str], docs: List[str], force_recompute: bool = False):
