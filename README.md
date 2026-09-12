@@ -41,7 +41,7 @@ This repository contains two submission-generation script tracks:
 For the all-local pipeline, the intended workflow is:
 
 1. Run `scripts/all_local.py` in an environment that can prepare the required model and retrieval caches.
-2. Reuse the generated cache artifacts from `data/output/pipeline_cache/` (or the configured output directory) for subsequent CPU-only runs.
+2. Reuse the generated cache artifacts from the runtime-created `data/output/pipeline_cache/` directory (or the configured output directory) for subsequent CPU-only runs.
 3. Generate the final `submission.csv` with `QueryId,DocumentId` pairs for the top-5 ranked results per test query.
 
 Input files are expected in `data/input/`, including:
@@ -52,7 +52,7 @@ Input files are expected in `data/input/`, including:
 - `test_queries.csv`
 - `sample_submission.csv`
 
-## Repository Map
+## Checked-In Repository Map
 
 ```text
 .
@@ -88,6 +88,8 @@ Input files are expected in `data/input/`, including:
     ├── all_local.py
     └── external_reranking_api.py
 ```
+
+When the scripts run locally, they also create `data/output/` for generated artifacts such as `pipeline_cache/` and `submission.csv`.
 
 ## Documentation
 
