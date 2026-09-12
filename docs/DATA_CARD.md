@@ -1,6 +1,6 @@
 # Data Card
 
-Extracted from: `old/Challenge 2 Form Responses.md`
+Extracted from: `resources/Challenge 2 Form Responses.md`
 
 - **Input vs. Output:** The model's input consists of short, natural language questions from farmers, and the output is a ranked CSV list containing the QueryId and the top-5 predicted DocumentIds.
 - **Classification Task:** The dataset utilizes graded relevance rather than simple binary classification. Documents are scored as 3 (Perfect), 2 (Relevant), 1 (Marginal), or 0 (Not relevant/hard negatives).

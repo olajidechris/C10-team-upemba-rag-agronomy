@@ -6,8 +6,10 @@ _Simplified high-level view of the repository layout._
 .
 ├── README.md
 ├── data/
-│   └── input/
-│       └── [competition input data files]
+│   ├── input/
+│   │   └── [competition input data files]
+│   └── submission/
+│       └── submission.csv
 ├── docs/
 │   ├── DATA_CARD.md
 │   ├── IMPACT_STATEMENT.md
@@ -19,8 +21,8 @@ _Simplified high-level view of the repository layout._
 ├── scripts/
 │   ├── all_local.py
 │   └── external_reranking_api.py
-└── old/
+└── resources/
     └── [archived legacy artifacts]
 ```
 
-This layout keeps submission-facing materials easy to review while retaining earlier artifacts in `old/`.
+This layout keeps submission-facing materials easy to review while retaining earlier artifacts in `resources/` and a checked-in final payload in `data/submission/`.

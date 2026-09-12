@@ -1,5 +1,5 @@
 """
-Extracted from old/team-upemba-rag-agronomy-all local.ipynb.
+Extracted from resources/team-upemba-rag-agronomy-all local.ipynb.
 Notebook-only commands were omitted for script compatibility.
 """
 

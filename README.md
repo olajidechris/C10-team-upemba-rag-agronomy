@@ -70,9 +70,10 @@ Input files are expected in `data/input/`, including:
 
 - `README.md` - top-level project overview and navigation.
 - `data/input/` - competition input files, labels, and sample outputs.
+- `data/submission/` - checked-in final submission payloads.
 - `scripts/` - executable script versions of the repository's retrieval pipelines.
 - `docs/` - submission documents, structure notes, and format guidance.
-- `old/` - archived notebooks, challenge responses, and legacy artifacts.
+- `resources/` - archived notebooks, challenge responses, legacy artifacts, and cached result bundles.
 
 For the maintained high-level tree, refer to `docs/PROJECT_STRUCTURE.md`.
 

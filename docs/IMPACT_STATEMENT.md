@@ -1,6 +1,6 @@
 # Impact Statement
 
-Extracted from: `old/Challenge 3 form responses.md`
+Extracted from: `resources/Challenge 3 form responses.md`
 
 **Purpose of the project:** Our project, Optimizing RAG Document Retrieval for Agronomic Advice, aims to develop a CPU-efficient, semantic document retrieval pipeline. It addresses a critical problem for smallholder farmers and agricultural extension workers in Africa who struggle to access context-specific advice during field operations. Existing agricultural search tools rely heavily on formal technical keywords, which creates a major barrier for farmers who typically use localized, everyday natural language to describe their crop issues.
 

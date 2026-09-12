@@ -9,6 +9,7 @@ Agricultural Extension RAG solution by Team Upemba (Cohort 10).
 - Added clear navigation and documentation.
 - Extracted and included challenge submission documents in `docs/`.
 - Created `scripts/` from notebook implementations and `data/input/` from competition input files.
+- Added `data/submission/submission.csv` from the archived high-scoring results bundle.
 - Added a unified submission format spec for both script tracks in `docs/SUBMISSION_FORMAT.md`.
 
 ## Checklist
@@ -18,7 +19,8 @@ Agricultural Extension RAG solution by Team Upemba (Cohort 10).
 - [x] Supporting documentation added.
 - [x] Problem statement and challenge submission documents extracted into `docs/`.
 - [x] Scripts and input data directories created.
+- [x] Final submission CSV checked in under `data/submission/`.
 - [x] Submission format updated to include both all-local and external-API script tracks.
 
 ## Archive
-Prior working files are preserved in the repository archive and can be referenced if needed.
+Prior working files are preserved in `resources/` and can be referenced if needed.

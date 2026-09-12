@@ -1,5 +1,5 @@
 """
-Extracted from old/team-upemba-rag-agronomy-external reranking api.ipynb.
+Extracted from resources/team-upemba-rag-agronomy-external reranking api.ipynb.
 Notebook-only commands were omitted for script compatibility.
 """
 

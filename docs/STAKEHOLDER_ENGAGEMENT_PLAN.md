@@ -1,6 +1,6 @@
 # Stakeholder Engagement Plan
 
-Extracted from: `old/Challenge 4 form responses.md`
+Extracted from: `resources/Challenge 4 form responses.md`
 
 ## Project
 Optimizing RAG Document Retrieval for Agronomic Advice
