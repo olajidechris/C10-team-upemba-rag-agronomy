@@ -1,7 +1,7 @@
 {
   "title": "Agricultural Extension RAG Retrieval Dataset",
   "subtitle": "A TREC/BEIR-style retrieval benchmark of farmer questions over an agricultural knowledge base",
-  "description": "Document-retrieval benchmark for RAG systems. Given a smallholder farmer's question, rank the most relevant agricultural-extension documents. Features graded relevance (3/2/1/0), multiple relevant docs per query, and built-in hard negatives. Corpus blends an original synthetic backbone (CC0) with LLM-grounded rewrites of open-access CC-BY CGIAR sources. Leaderboard metric: nDCG@5. See /docs/DATA_CARD.md for full schema, evaluation, licensing, and build details.",
+  "description": "Document-retrieval benchmark for RAG systems. Given a smallholder farmer's question, rank the most relevant agricultural-extension documents. Features graded relevance (3/2/1/0), multiple relevant docs per query, and built-in hard negatives. Corpus blends an original synthetic backbone (CC0) with LLM-grounded rewrites of open-access CC-BY CGIAR sources. Leaderboard metric: nDCG@5. See ../../docs/DATA_CARD.md for full schema, evaluation, licensing, and build details.",
   "licenses": [
     {
       "name": "CC-BY-4.0"
@@ -86,7 +86,7 @@
       }
     },
     {
-      "path": "/docs/DATA_CARD.md",
+      "path": "../../docs/DATA_CARD.md",
       "description": "Full dataset documentation: task, schema, evaluation, licensing, and build process."
     }
   ]

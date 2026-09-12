@@ -29,7 +29,11 @@ class Config:
         if os.path.exists(os.path.join(LOCAL_INPUT_DEFAULT, "documents.csv"))
         else KAGGLE_INPUT_DEFAULT
     )
-    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
+    LOCAL_OUTPUT_DEFAULT = os.path.join(REPO_ROOT, "data", "output")
+    KAGGLE_OUTPUT_DEFAULT = "/kaggle/working/"
+    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH") or (
+        KAGGLE_OUTPUT_DEFAULT if os.path.isdir("/kaggle/working") else LOCAL_OUTPUT_DEFAULT
+    )
 
     DOCS_PATH = os.path.join(BASE_PATH, "documents.csv")
     TRAIN_QUERIES_PATH = os.path.join(BASE_PATH, "train_queries.csv")
@@ -88,6 +92,8 @@ class CachedBM25Retriever:
             print(f"📦 Loading cached BM25 index from: {Config.BM25_CACHE_PATH}")
             with open(Config.BM25_CACHE_PATH, "rb") as f:
                 state = pickle.load(f)
+                cached_doc_ids = state.get("doc_ids", [])
+            if cached_doc_ids == doc_ids:
                 self.k1 = state["k1"]
                 self.b = state["b"]
                 self.corpus_size = state["corpus_size"]
@@ -96,7 +102,8 @@ class CachedBM25Retriever:
                 self.idf = state["idf"]
                 self.doc_len = state["doc_len"]
                 self.doc_ids = state["doc_ids"]
-            return
+                return
+            print("♻️ BM25 cache mismatch detected; rebuilding index for current corpus.")
 
         print("⚡ Fitting BM25 index from corpus...")
         self.doc_ids = doc_ids
@@ -171,11 +178,14 @@ class CachedNomicRetriever:
         cache_exists = os.path.exists(Config.EMBEDDINGS_CACHE_PATH) and os.path.exists(Config.DOC_IDS_CACHE_PATH)
 
         if not force_recompute and cache_exists:
-            print(f"📦 Loading cached embeddings from: {Config.EMBEDDINGS_CACHE_PATH}")
-            self.doc_embeddings = torch.load(Config.EMBEDDINGS_CACHE_PATH, map_location=self.device)
             with open(Config.DOC_IDS_CACHE_PATH, "rb") as f:
-                self.doc_ids = pickle.load(f)
-            return
+                cached_doc_ids = pickle.load(f)
+            if cached_doc_ids == doc_ids:
+                print(f"📦 Loading cached embeddings from: {Config.EMBEDDINGS_CACHE_PATH}")
+                self.doc_embeddings = torch.load(Config.EMBEDDINGS_CACHE_PATH, map_location=self.device)
+                self.doc_ids = cached_doc_ids
+                return
+            print("♻️ Embedding cache mismatch detected; recomputing for current corpus.")
 
         print("⚡ Computing Nomic embeddings for document corpus...")
         # Nomic requires "search_document: " prefix for indexing

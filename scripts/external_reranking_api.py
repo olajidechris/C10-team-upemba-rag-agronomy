@@ -39,7 +39,11 @@ class Config:
         if os.path.exists(os.path.join(LOCAL_INPUT_DEFAULT, "documents.csv"))
         else KAGGLE_INPUT_DEFAULT
     )
-    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH", "/kaggle/working/")
+    LOCAL_OUTPUT_DEFAULT = os.path.join(REPO_ROOT, "data", "output")
+    KAGGLE_OUTPUT_DEFAULT = "/kaggle/working/"
+    OUTPUT_DIR = os.environ.get("AGRONOMY_OUTPUT_PATH") or (
+        KAGGLE_OUTPUT_DEFAULT if os.path.isdir("/kaggle/working") else LOCAL_OUTPUT_DEFAULT
+    )
 
     DOCS_PATH = os.path.join(BASE_PATH, "documents.csv")
     TRAIN_QUERIES_PATH = os.path.join(BASE_PATH, "train_queries.csv")
