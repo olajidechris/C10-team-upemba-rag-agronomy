@@ -54,42 +54,13 @@ Input files are expected in `data/input/`, including:
 
 ## Checked-In Repository Map
 
-This tree shows the current checked-in layout at a glance; keep it aligned with structural changes and refer to `docs/PROJECT_STRUCTURE.md` for the maintained high-level summary.
+- `README.md` - top-level project overview and navigation.
+- `data/input/` - competition input files, labels, and sample outputs.
+- `scripts/` - executable script versions of the repository's retrieval pipelines.
+- `docs/` - submission documents, structure notes, and format guidance.
+- `old/` - archived notebooks, challenge responses, and legacy artifacts.
 
-```text
-.
-├── README.md
-├── data/
-│   └── input/
-│       ├── baseline_submission.csv
-│       ├── dataset-metadata.json
-│       ├── documents.csv
-│       ├── qrels_train.csv
-│       ├── sample_submission.csv
-│       ├── test_queries.csv
-│       └── train_queries.csv
-├── docs/
-│   ├── DATA_CARD.md
-│   ├── IMPACT_STATEMENT.md
-│   ├── PROBLEM_STATEMENT.md
-│   ├── PROJECT_STRUCTURE.md
-│   ├── STAKEHOLDER_ENGAGEMENT_PLAN.md
-│   ├── SUBMISSION.md
-│   └── SUBMISSION_FORMAT.md
-├── old/
-│   ├── Challenge 1 form responses.md
-│   ├── Challenge 2 Form Responses.md
-│   ├── Challenge 3 form responses.md
-│   ├── Challenge 4 form responses.md
-│   ├── Gmail - Cohort 10 Competition Timeline & Submission Requirements.pdf
-│   ├── agricultural-extension-rag-smart-retrieval-for-farmers input data files.zip
-│   ├── results-external reranker.zip
-│   ├── team-upemba-rag-agronomy-all local.ipynb
-│   └── team-upemba-rag-agronomy-external reranking api.ipynb
-└── scripts/
-    ├── all_local.py
-    └── external_reranking_api.py
-```
+For the maintained high-level tree, refer to `docs/PROJECT_STRUCTURE.md`.
 
 When the scripts run locally, they also create `data/output/` for generated artifacts such as `pipeline_cache/` and `submission.csv`.
 
