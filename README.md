@@ -20,4 +20,4 @@ This repository has been reorganized for final submission.
 ## Notes
 
 Legacy working artifacts have been archived in `old/` to keep the repository root clean for submission review.
-The extracted submission docs in `docs/` are sourced from archived challenge response files in `old/` (`Challenge 1` through `Challenge 4` form responses).
+The extracted submission docs in `docs/` are compiled from the four challenge response materials.
