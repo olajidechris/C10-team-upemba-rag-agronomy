@@ -106,6 +106,9 @@ class CachedBM25Retriever:
             print("♻️ BM25 cache mismatch detected; rebuilding index for current corpus.")
 
         print("⚡ Fitting BM25 index from corpus...")
+        self.doc_freqs = []
+        self.idf = {}
+        self.doc_len = []
         self.doc_ids = doc_ids
         self.corpus_size = len(docs)
         total_len = 0
@@ -168,7 +171,6 @@ class CachedNomicRetriever:
         self.model = SentenceTransformer(
             model_name,
             device=device,
-            trust_remote_code=True,
             cache_folder=Config.MODEL_CACHE_DIR
         )
         self.doc_ids = []
