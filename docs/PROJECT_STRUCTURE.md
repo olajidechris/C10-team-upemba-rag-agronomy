@@ -17,7 +17,6 @@ _Simplified high-level view of the repository layout._
 │   ├── PROJECT_STRUCTURE.md
 │   ├── STAKEHOLDER_ENGAGEMENT_PLAN.md
 │   ├── SUBMISSION_FORMAT.md
-│   └── SUBMISSION.md
 ├── scripts/
 │   ├── all_local.py
 │   └── external_reranking_api.py
