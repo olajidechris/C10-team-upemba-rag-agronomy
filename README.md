@@ -18,6 +18,7 @@ This repository has been reorganized for final submission.
 - `docs/DATA_CARD.md` - extracted data card submission document.
 - `docs/IMPACT_STATEMENT.md` - extracted impact statement submission document.
 - `docs/STAKEHOLDER_ENGAGEMENT_PLAN.md` - extracted stakeholder engagement plan submission document.
+- `docs/SUBMISSION_FORMAT.md` - required submission schema and both script-track options.
 
 ## Notes
 
