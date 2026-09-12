@@ -28,8 +28,9 @@ The submission centers on a hybrid retrieval strategy and a reranking stage tail
 
 The system is evaluated with **nDCG@5**, the challenge's rank-sensitive retrieval metric.
 
-- Baseline TF-IDF performance was approximately **0.551**.
-- Team Upemba's reported validation performance reached **0.8755 nDCG@5**.
+- The challenge baseline TF-IDF score was approximately **0.551 nDCG@5**.
+- Team Upemba's reported validation performance reached **0.8755 nDCG@5** on the labeled training-query evaluation used during project development.
+- The checked-in `scripts/all_local.py` script evaluates retrieval quality against `data/input/train_queries.csv` and `data/input/qrels_train.csv` before generating test-set predictions.
 
 ## Reproduction
 
@@ -37,6 +38,19 @@ This repository contains two submission-generation script tracks:
 
 - `scripts/all_local.py` - all-local hybrid retrieval and reranking pipeline.
 - `scripts/external_reranking_api.py` - hybrid retrieval pipeline with external API reranking.
+
+Run the scripts from the repository root:
+
+```bash
+python scripts/all_local.py
+python scripts/external_reranking_api.py
+```
+
+Optional environment variables:
+
+- `AGRONOMY_INPUT_PATH` - overrides the default input directory (`data/input/` locally).
+- `AGRONOMY_OUTPUT_PATH` - overrides the default output directory (`data/output/` locally).
+- `VOYAGE_API_KEY` - required for `scripts/external_reranking_api.py` when Kaggle secrets are unavailable.
 
 For the all-local pipeline, the intended workflow is:
 
