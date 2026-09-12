@@ -15,4 +15,4 @@ This repository has been reorganized for final submission.
 
 ## Notes
 
-All previously existing notebooks, response files, archives, and timeline reference files were moved into `old/` to keep the root clean for submission review.
+Legacy working artifacts have been archived in `old/` to keep the repository root clean for submission review.
